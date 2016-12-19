@@ -30,6 +30,9 @@ RUN apt-get -q update &&\
 RUN useradd -m -d /home/jenkins -s /bin/sh jenkins &&\
     echo "jenkins:jenkins" | chpasswd
 
+# Allow jenkins users to sudo
+RUN echo 'jenkins ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/jenkins
+
 # Standard SSH port
 EXPOSE 22
 
